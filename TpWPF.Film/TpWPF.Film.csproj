@@ -74,6 +74,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\FilmModel.cs" />
+    <Compile Include="Model\ListFilmModel.cs" />
     <Compile Include="RequeteAPI.cs" />
     <Compile Include="ViewModels\RechercheFilmsViewModel.cs" />
     <Compile Include="Views\RechercheFilms.xaml.cs">

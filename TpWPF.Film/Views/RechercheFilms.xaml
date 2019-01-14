@@ -42,10 +42,26 @@
 
         <Button Content="Rechercher" Grid.Column="5" Grid.Row="5" Command="{Binding RechercherCommand}"/>
 
-        <DockPanel Grid.Column="0" Grid.Row="6">
-            <Controls:Tile Title="Hello!"  Width="100" Height="100" Count="1" />
-        </DockPanel>
-      
+        <!--A changer-->
+        <ListBox  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="8"
+    ItemsSource="{Binding ListFilm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Left" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Controls:Tile Title="{Binding Title}" 
+                TiltFactor="2" 
+                Width="100" Height="100" 
+                Count="{Binding TableCount}" 
+                HorizontalContentAlignment="Right">
+                    </Controls:Tile>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
 
     </Grid>
 </UserControl>

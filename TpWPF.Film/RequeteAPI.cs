@@ -14,11 +14,11 @@ namespace TpWPF.Film
     {
         public const string debutRequete = "http://www.omdbapi.com/?apikey=12434fb2&";
 
-        public void GetByTitre(string titre)
+        public ListFilmModel GetByTitre(string titre)
         {
-            var requete = debutRequete + "t=" + titre;
+            var requete = debutRequete + "s=" + titre;
             var result = Appel(requete);
-            TransformJsonToObject(result);
+            return TransformJsonToObject(result);
         }
 
         static string Appel(string requete)
@@ -39,9 +39,9 @@ namespace TpWPF.Film
             }
         }
 
-        public void TransformJsonToObject(string json)
+        public ListFilmModel TransformJsonToObject(string json)
         {
-            var deserializedProduct = JsonConvert.DeserializeObject<FilmModel>(json);
+            return JsonConvert.DeserializeObject<ListFilmModel>(json);
         }
     }
 }
