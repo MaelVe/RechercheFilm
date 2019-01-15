@@ -1,6 +1,0 @@
-C:\Users\Acer\source\repos\TpWPF.Film\TpWPF.MVVM\bin\Debug\TpWPF.MVVM.dll
-C:\Users\Acer\source\repos\TpWPF.Film\TpWPF.MVVM\bin\Debug\TpWPF.MVVM.pdb
-C:\Users\Acer\source\repos\TpWPF.Film\TpWPF.MVVM\obj\Debug\TpWPF.MVVM.csprojAssemblyReference.cache
-C:\Users\Acer\source\repos\TpWPF.Film\TpWPF.MVVM\obj\Debug\TpWPF.MVVM.csproj.CoreCompileInputs.cache
-C:\Users\Acer\source\repos\TpWPF.Film\TpWPF.MVVM\obj\Debug\TpWPF.MVVM.dll
-C:\Users\Acer\source\repos\TpWPF.Film\TpWPF.MVVM\obj\Debug\TpWPF.MVVM.pdb

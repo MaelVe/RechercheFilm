@@ -15,6 +15,7 @@ namespace TpWPF.Film.Model
         private string imdbID;
         private string type;
         private string poster;
+        private string error;
 
        
 
@@ -27,6 +28,7 @@ namespace TpWPF.Film.Model
         public string imdbId { get => imdbID; set => imdbID = value; }
         public string Type { get => type; set => type = value; }
         public string Poster { get => poster; set => poster = value; }
+        public string Error { get => error; set => error = value; }
 
         #endregion
 

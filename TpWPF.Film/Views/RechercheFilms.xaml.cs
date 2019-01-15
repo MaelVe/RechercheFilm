@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls.Dialogs;
 using TpWPF.Film.ViewModels;
 
 namespace TpWPF.Film.Views
@@ -24,7 +25,7 @@ namespace TpWPF.Film.Views
         public RechercheFilms()
         {
             InitializeComponent();
-            this.DataContext = new  RechercheFilmsViewModel();
+            this.DataContext = new  RechercheFilmsViewModel(DialogCoordinator.Instance);
         }
     }
 }

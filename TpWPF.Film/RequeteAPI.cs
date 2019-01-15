@@ -14,9 +14,28 @@ namespace TpWPF.Film
     {
         public const string debutRequete = "http://www.omdbapi.com/?apikey=12434fb2&";
 
-        public ListFilmModel GetByTitre(string titre)
+        public object ConstructionRequete(string titre, string year, string id)
         {
-            var requete = debutRequete + "s=" + titre;
+            var requete = debutRequete;
+
+            // Si id est rempli on ne fait une recherche que par id et pas par les autres champs
+            if (string.IsNullOrEmpty(id))
+            {
+                requete += "i=" + id;
+                var resultId = Appel(requete);
+                return TransformJsonToObject(resultId);
+            }
+
+            if (string.IsNullOrEmpty(titre))
+            {
+                requete += "s=" + titre;
+            }
+
+            if (string.IsNullOrEmpty(titre))
+            {
+                requete += "y=" + year;
+            }
+
             var result = Appel(requete);
             return TransformJsonToObject(result);
         }
@@ -39,8 +58,13 @@ namespace TpWPF.Film
             }
         }
 
-        public ListFilmModel TransformJsonToObject(string json)
+        public object TransformJsonToObject(string json)
         {
+            if (json.Contains("Error"))
+            {
+                return JsonConvert.DeserializeObject<ErrorModel>(json);
+            }
+
             return JsonConvert.DeserializeObject<ListFilmModel>(json);
         }
     }
