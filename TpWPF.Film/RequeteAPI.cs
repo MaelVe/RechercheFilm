@@ -19,20 +19,27 @@ namespace TpWPF.Film
             var requete = debutRequete;
 
             // Si id est rempli on ne fait une recherche que par id et pas par les autres champs
-            if (string.IsNullOrEmpty(id))
+            if (!string.IsNullOrEmpty(id))
             {
                 requete += "i=" + id;
                 var resultId = Appel(requete);
                 return TransformJsonToObject(resultId);
             }
 
-            if (string.IsNullOrEmpty(titre))
+            bool titrePresent = false;
+            if (!string.IsNullOrEmpty(titre))
             {
+                titrePresent = true;
                 requete += "s=" + titre;
             }
 
-            if (string.IsNullOrEmpty(titre))
+            if (!string.IsNullOrEmpty(year))
             {
+                if (titrePresent)
+                {
+                    requete += "&";
+                }
+
                 requete += "y=" + year;
             }
 
