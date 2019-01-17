@@ -78,7 +78,11 @@
     <Compile Include="Model\FilmModel.cs" />
     <Compile Include="Model\ListFilmModel.cs" />
     <Compile Include="RequeteAPI.cs" />
+    <Compile Include="ViewModels\DetailFilmViewModel.cs" />
     <Compile Include="ViewModels\RechercheFilmsViewModel.cs" />
+    <Compile Include="Views\DetailFilm.xaml.cs">
+      <DependentUpon>DetailFilm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RechercheFilms.xaml.cs">
       <DependentUpon>RechercheFilms.xaml</DependentUpon>
     </Compile>
@@ -98,6 +102,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\DetailFilm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RechercheFilms.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -14,7 +14,7 @@ namespace TpWPF.Film
     {
         public const string debutRequete = "http://www.omdbapi.com/?apikey=12434fb2&";
 
-        public object ConstructionRequete(string titre, string year, string id)
+        public object ConstructionRequete(string titre, string year, string id, string type)
         {
             var requete = debutRequete;
 
@@ -33,6 +33,7 @@ namespace TpWPF.Film
                 requete += "s=" + titre;
             }
 
+            bool yearPresent = false;
             if (!string.IsNullOrEmpty(year))
             {
                 if (titrePresent)
@@ -41,6 +42,17 @@ namespace TpWPF.Film
                 }
 
                 requete += "y=" + year;
+                yearPresent = true;
+            }
+
+            if (!string.IsNullOrEmpty(type))
+            {
+                if(titrePresent || yearPresent)
+                {
+                    requete += "&";
+                }
+
+                requete += "type=" + type;
             }
 
             var result = Appel(requete);
