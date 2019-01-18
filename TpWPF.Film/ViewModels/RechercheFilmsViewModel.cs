@@ -27,7 +27,7 @@ namespace TpWPF.Film.ViewModels
         private string searchId;
         private string searchYear;
         private string typeSelected;
-        private bool detail;
+        private bool detail;        
 
         #endregion
 

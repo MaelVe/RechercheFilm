@@ -75,6 +75,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\ErrorModel.cs" />
+    <Compile Include="Model\FilmCompletModel.cs" />
     <Compile Include="Model\FilmModel.cs" />
     <Compile Include="Model\ListFilmModel.cs" />
     <Compile Include="RequeteAPI.cs" />

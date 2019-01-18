@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:TpWPF.Film.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             DataContext="DetailFilmViewModel">
+             >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250" />
@@ -24,6 +24,15 @@
         <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
             <Label Content="Description"/>
             <Label Content="{Binding Description}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Label Content="Titre"/>
+            <Label Content="Année"/>
+            <Label Content="Rated"/>
+            <Label Content="Date de sortie"/>
+            <Label Content="Durée"/>
+            <Label Content="Titre"/>
+            <Label Content="Titre"/>
         </StackPanel>
     </Grid>
 </UserControl>

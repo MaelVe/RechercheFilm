@@ -72,6 +72,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <local:DetailFilm Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="8" Margin="0 10 0 10" Visibility="{Binding  Detail, Converter={StaticResource BoolToVisConverter}, FallbackValue=Hidden}" />
+        <local:DetailFilm Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="8" Margin="0 10 0 10" Visibility="{Binding Detail, Converter={StaticResource BoolToVisConverter}}" />
+        <Button Grid.Column="0" Grid.Row="9" Visibility="{Binding Detail, Converter={StaticResource BoolToVisConverter}}" Content="lalallalllaa"/>
     </Grid>
 </UserControl>

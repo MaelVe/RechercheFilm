@@ -23,7 +23,7 @@ namespace TpWPF.Film
             {
                 requete += "i=" + id;
                 var resultId = Appel(requete);
-                return TransformJsonToObject(resultId);
+                return TransformJsonToObject(resultId, true);
             }
 
             bool titrePresent = false;
@@ -56,7 +56,16 @@ namespace TpWPF.Film
             }
 
             var result = Appel(requete);
-            return TransformJsonToObject(result);
+            return TransformJsonToObject(result, true);
+        }
+
+        public object ConstructionRequete(string id)
+        {
+            var requete = debutRequete;
+            requete += "i=" + id;
+            var resultId = Appel(requete);
+            return TransformJsonToObject(resultId, false);
+
         }
 
         static string Appel(string requete)
@@ -77,14 +86,21 @@ namespace TpWPF.Film
             }
         }
 
-        public object TransformJsonToObject(string json)
+        public object TransformJsonToObject(string json, bool fromClassic)
         {
             if (json.Contains("Error"))
             {
                 return JsonConvert.DeserializeObject<ErrorModel>(json);
             }
 
-            return JsonConvert.DeserializeObject<ListFilmModel>(json);
-        }
+            if (fromClassic)
+            {
+                return JsonConvert.DeserializeObject<ListFilmModel>(json);
+            }
+            else
+            {
+                return JsonConvert.DeserializeObject<FilmCompletModel>(json);
+            }
+        }       
     }
 }
