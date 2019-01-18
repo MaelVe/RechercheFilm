@@ -26,13 +26,55 @@
             <Label Content="{Binding Description}"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <Label Content="Titre"/>
-            <Label Content="Année"/>
-            <Label Content="Rated"/>
-            <Label Content="Date de sortie"/>
-            <Label Content="Durée"/>
-            <Label Content="Titre"/>
-            <Label Content="Titre"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Titre"/>
+                <Label Content="{Binding Title}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Année"/>
+                <Label Content="{Binding Year}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Rated"/>
+                <Label Content="{Binding Rated}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Date de sortie"/>
+                <Label Content="{Binding Released}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Durée"/>
+                <Label Content="{Binding Runtime}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Genre"/>
+                <Label Content="{Binding Genre}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Directeur"/>
+                <Label Content="{Binding Director}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Scénariste"/>
+                <Label Content="{Binding Writer}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Acteurs"/>
+                <Label Content="{Binding Actors}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Langage"/>
+                <Label Content="{Binding Language}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Pays"/>
+                <Label Content="{Binding Country}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Récompense"/>
+                <Label Content="{Binding Awards}"/>
+            </StackPanel>
+
         </StackPanel>
     </Grid>
 </UserControl>
