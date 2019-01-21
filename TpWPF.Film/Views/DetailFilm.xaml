@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:TpWPF.Film.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="DetailFilmViwModel"
              >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,60 +20,62 @@
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
+
+        <Button Grid.Column="1" Grid.Row="0" Content="Ajouter à mes films !" HorizontalAlignment="Right" Command="{Binding AddCommand}"/>
         <Label Content="Détail du film" Grid.Column="0" Grid.Row="0" FontSize="25"/>
-        <Image Source="{Binding Poster}" Grid.Column="0" Grid.Row="1"/>
+        <Image Source="{Binding DetailFilm.Poster}" Grid.Column="0" Grid.Row="1"/>
         <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
-            <Label Content="Description"/>
-            <Label Content="{Binding Description}"/>
+            <Label Content="Description :" FontWeight="Bold"/>
+            <Label Content="{Binding DetailFilm.Description}"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1">
             <StackPanel Orientation="Horizontal">
-                <Label Content="Titre"/>
-                <Label Content="{Binding Title}"/>
+                <Label Content="Titre :" FontWeight="Bold"/>
+                <Label Content="{Binding DetailFilm.Title}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Année"/>
-                <Label Content="{Binding Year}"/>
+                <Label Content="Année :" FontWeight="Bold"/>
+                <Label Content="{Binding DetailFilm.Year}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Rated"/>
-                <Label Content="{Binding Rated}"/>
+                <Label Content="Rated :" FontWeight="Bold"/>
+                <Label Content="{Binding DetailFilm.Rated}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Date de sortie"/>
-                <Label Content="{Binding Released}"/>
+                <Label Content="Date de sortie :" FontWeight="Bold"/>
+                <Label Content="{Binding DetailFilm.Released}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Durée"/>
-                <Label Content="{Binding Runtime}"/>
+                <Label Content="Durée: " FontWeight="Bold"/>
+                <Label Content="{Binding DetailFilm.Runtime}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Genre"/>
-                <Label Content="{Binding Genre}"/>
+                <Label Content="Genre :" FontWeight="Bold"/>
+                <Label Content="{Binding DetailFilm.Genre}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Directeur"/>
-                <Label Content="{Binding Director}"/>
+                <Label Content="Directeur :" FontWeight="Bold"/>
+                <Label Content="{Binding DetailFilm.Director}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Scénariste"/>
-                <Label Content="{Binding Writer}"/>
+                <Label Content="Scénariste :" FontWeight="Bold"/>
+                <Label Content="{Binding DetailFilm.Writer}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Acteurs"/>
-                <Label Content="{Binding Actors}"/>
+                <Label Content="Acteurs :" FontWeight="Bold"/>
+                <Label Content="{Binding DetailFilm.Actors}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Langage"/>
-                <Label Content="{Binding Language}"/>
+                <Label Content="Langage :" FontWeight="Bold"/>
+                <Label Content="{Binding DetailFilm.Language}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Pays"/>
-                <Label Content="{Binding Country}"/>
+                <Label Content="Pays :" FontWeight="Bold"/>
+                <Label Content="{Binding DetailFilm.Country}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Récompense"/>
-                <Label Content="{Binding Awards}"/>
+                <Label Content="Récompense :" FontWeight="Bold"/>
+                <Label Content="{Binding DetailFilm.Awards}"/>
             </StackPanel>
 
         </StackPanel>

@@ -28,7 +28,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="150"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -49,7 +49,8 @@
         <Label    Grid.Column="5" Grid.Row="2" Content="Type :" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center"/>
         <ComboBox Grid.Column="6" Grid.Row="2" ItemsSource="{Binding SearchType}" SelectedItem="{Binding TypeSelected}"/>
         
-        <Button   Grid.Column="5" Grid.Row="7" Content="Rechercher"  Command="{Binding RechercherCommand}"/>
+        <Button   Grid.Column="5" Grid.Row="7" Content="Rechercher"  Margin="5" Command="{Binding RechercherCommand}"/>
+        <Button   Grid.Column="6" Grid.Row="7" Content="Cacher les détails"  Margin="15,5,5,5" Command="{Binding CacherDetailCommand}" Visibility="{Binding CacherDetailVisibility, Converter={StaticResource BoolToVisConverter}}"/>
 
         <ListBox  Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="8"
     ItemsSource="{Binding ListFilm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
@@ -61,7 +62,7 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Controls:Tile Title="{Binding Title}"  Command="{Binding Path=DataContext.FilmDetailCommand, RelativeSource={RelativeSource AncestorType={x:Type local:RechercheFilms}}}" CommandParameter="1"
+                    <Controls:Tile Title="{Binding Title}"  Command="{Binding Path=DataContext.FilmDetailCommand, RelativeSource={RelativeSource AncestorType={x:Type local:RechercheFilms}}}" CommandParameter="{Binding imdbId}"
                 TiltFactor="2" 
                 Width="100" Height="100"                                     
                 HorizontalContentAlignment="Right">
@@ -72,6 +73,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Separator Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="8" VerticalAlignment="Bottom"/>
         <local:DetailFilm Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="8" Margin="0 10 0 10" Visibility="{Binding Detail, Converter={StaticResource BoolToVisConverter}}" />
     </Grid>
 </UserControl>

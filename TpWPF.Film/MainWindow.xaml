@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:TpWPF.Film"
         xmlns:views="clr-namespace:TpWPF.Film.Views"
         mc:Ignorable="d"
-        Title="MoovieSearch!" Height="615" Width="1160">
+        Title="MoovieSearch!" Height="900" Width="1160">
     <Grid>
         <TabControl>
             <TabItem Header="Recherche">

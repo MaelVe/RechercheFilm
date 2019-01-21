@@ -10,7 +10,7 @@ using TpWPF.MVVM;
 
 namespace TpWPF.Film.ViewModels
 {
-    
+
     public class RechercheFilmsViewModel : ObservableObject
     {
 
@@ -19,6 +19,7 @@ namespace TpWPF.Film.ViewModels
         private IDialogCoordinator dialogCoordinator;
         private RelayCommand rechercherCommand;
         private RelayCommand filmDetailCommand;
+        private RelayCommand cacherDetailCommand;
         private RequeteAPI requeteAPI;
         private ObservableCollection<FilmModel> listFilm;
         private ObservableCollection<string> searchType;
@@ -27,7 +28,8 @@ namespace TpWPF.Film.ViewModels
         private string searchId;
         private string searchYear;
         private string typeSelected;
-        private bool detail;        
+        private bool detail;
+        private bool cacherDetailVisibility;
 
         #endregion
 
@@ -39,6 +41,7 @@ namespace TpWPF.Film.ViewModels
             dialogCoordinator = dialog;
             RechercherCommand = new RelayCommand(RechercherCommandExecute);
             FilmDetailCommand = new RelayCommand(FilmDetailCommandExecute);
+            CacherDetailCommand = new RelayCommand(CacherDetailCommandExecute);
             requeteAPI = new RequeteAPI();
             ListFilm = new ObservableCollection<FilmModel>();
             SearchType = new ObservableCollection<string>
@@ -57,6 +60,7 @@ namespace TpWPF.Film.ViewModels
 
         public RelayCommand FilmDetailCommand { get => filmDetailCommand; set => filmDetailCommand = value; }
         public RelayCommand RechercherCommand { get => rechercherCommand; set => rechercherCommand = value; }
+        public RelayCommand CacherDetailCommand { get => cacherDetailCommand; set => cacherDetailCommand = value; }
         public ObservableCollection<FilmModel> ListFilm { get => listFilm; set => SetProperty(nameof(ListFilm), ref listFilm, value); }
         public ObservableCollection<string> SearchType { get => searchType; set => SetProperty(nameof(SearchType), ref searchType, value); }
         public string SearchTitle { get => searchTitle; set => SetProperty(nameof(SearchTitle), ref searchTitle, value); }
@@ -65,6 +69,7 @@ namespace TpWPF.Film.ViewModels
         public string TypeSelected { get => typeSelected; set => SetProperty(nameof(TypeSelected), ref typeSelected, value); }
         public bool Detail { get => detail; set => SetProperty(nameof(Detail), ref detail, value); }
         public DetailFilmViewModel DetailFilm { get => detailFilm; set => SetProperty(nameof(DetailFilm), ref detailFilm, value); }
+        public bool CacherDetailVisibility { get => cacherDetailVisibility; set => SetProperty(nameof(CacherDetailVisibility), ref cacherDetailVisibility, value); }
 
         #endregion
 
@@ -85,18 +90,23 @@ namespace TpWPF.Film.ViewModels
                 {
                     foreach (var a in result.Search)
                     {
-                        if (string.IsNullOrEmpty(a.Poster))
+                        if (string.IsNullOrEmpty(a.Poster) || a.Poster.Equals("N/A") || !a.Poster.Contains("http"))
                         {
                             a.Poster = "../../Ressources/noImage.jpg";
                         }
-
+                        else
+                        {
+                            // on enlève le titre ici car il y a une image
+                            a.Title = "";
+                        }
+                        
                         ListFilm.Add(a);
                     }
                 }
             }
             else
             {
-                var result = resultTemp as ErrorModel;  
+                var result = resultTemp as ErrorModel;
                 var x = dialogCoordinator.ShowMessageAsync(this, "Erreur", result.Error);
                 ListFilm = new ObservableCollection<FilmModel>();
             }
@@ -104,7 +114,20 @@ namespace TpWPF.Film.ViewModels
 
         public void FilmDetailCommandExecute(object commandParameter)
         {
-            this.Detail = !this.Detail;
+            if (!this.Detail)
+            {
+                this.Detail = true;
+                this.CacherDetailVisibility = true;
+            }
+
+            this.DetailFilm.Appel(commandParameter as string);
+        }
+
+        public void CacherDetailCommandExecute(object commandParameter)
+        {
+            this.Detail = false;
+            this.CacherDetailVisibility = false;
+
         }
 
         #endregion
