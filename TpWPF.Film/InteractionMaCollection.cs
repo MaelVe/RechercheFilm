@@ -23,7 +23,7 @@ namespace TpWPF.Film
             }
         }
 
-        public void GetMyCollection()
+        public ListFilmModel GetMyCollection()
         {
             MaCollectionModel myCollections;
             using (StreamReader file = File.OpenText(@"../../Ressources/MaCollection.json"))
@@ -33,7 +33,16 @@ namespace TpWPF.Film
             }
 
             RequeteAPI requeteAPI = new RequeteAPI();
-            requeteAPI.ConstructionRequete(myCollections.ImdbId);
+            object a = requeteAPI.ConstructionRequete(myCollections.ImdbId);
+
+            if(a is ListFilmModel)
+            {
+                return a as ListFilmModel;
+            }
+            else
+            {
+                return null;
+            }
 
         }
     }

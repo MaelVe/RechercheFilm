@@ -1,12 +1,48 @@
 ﻿<UserControl x:Class="TpWPF.Film.Views.MaCollection"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TpWPF.Film.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" 
+             xmlns:local="clr-namespace:TpWPF.Film.Views"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+            <Label Content="Bienvenue sur la liste de tous vos films !" FontSize="18"/>
+            <Label Content="Pour ajouter un nouveau film, faites une recherche dans l'onglet recherche, cliquez sur un des résultats puis sur 'ajouter a mes films' " />
+            <Label Content="Si vous souhaitez consulter les détails d'un film cliquer sur le film" />
+        </StackPanel>
+        <ListBox  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+    ItemsSource="{Binding MesFilms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+            ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Margin="0,0,0,0"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Controls:Tile Title="{Binding Title}"  Command="{Binding Path=DataContext.FilmDetailCommand, RelativeSource={RelativeSource AncestorType={x:Type local:RechercheFilms}}}" CommandParameter="{Binding imdbId}"
+                TiltFactor="2" 
+                Width="100" Height="100"                                     
+                HorizontalContentAlignment="Right">
+                        <Controls:Tile.Background>
+                            <ImageBrush ImageSource="{Binding Poster}" />
+                        </Controls:Tile.Background>
+                    </Controls:Tile>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>
