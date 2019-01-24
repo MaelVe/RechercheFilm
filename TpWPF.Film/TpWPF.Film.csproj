@@ -74,15 +74,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="InteractionMaCollection.cs" />
     <Compile Include="Model\ErrorModel.cs" />
     <Compile Include="Model\FilmCompletModel.cs" />
     <Compile Include="Model\FilmModel.cs" />
     <Compile Include="Model\ListFilmModel.cs" />
+    <Compile Include="Model\MaCollectionModel.cs" />
     <Compile Include="RequeteAPI.cs" />
     <Compile Include="ViewModels\DetailFilmViewModel.cs" />
+    <Compile Include="ViewModels\MaCollectionViewModel.cs" />
     <Compile Include="ViewModels\RechercheFilmsViewModel.cs" />
     <Compile Include="Views\DetailFilm.xaml.cs">
       <DependentUpon>DetailFilm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MaCollection.xaml.cs">
+      <DependentUpon>MaCollection.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RechercheFilms.xaml.cs">
       <DependentUpon>RechercheFilms.xaml</DependentUpon>
@@ -104,6 +110,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\DetailFilm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MaCollection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -135,6 +145,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Ressources\MaCollection.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
