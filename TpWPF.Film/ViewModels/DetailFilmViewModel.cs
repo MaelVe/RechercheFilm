@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using TpWPF.Film.Model;
 using TpWPF.MVVM;
 
@@ -13,6 +14,7 @@ namespace TpWPF.Film.ViewModels
         #region Fields
 
         private string maNote;
+        private string monStatut;
         private string imdbId;
         private string poster;
         private string description;
@@ -29,6 +31,7 @@ namespace TpWPF.Film.ViewModels
         private string language;
         private string country;
         private string award;
+        private string statut;
         private bool fromMaCollection;
         private bool fromMaCollectionHide;
         private RelayCommand addCommand;
@@ -44,7 +47,6 @@ namespace TpWPF.Film.ViewModels
             AddCommand = new RelayCommand(AddCommandExecute);
             NoteCommand = new RelayCommand(NoteCommandExecute);
             RemoveCommand = new RelayCommand(RemoveCommandExecute);
-
         }
 
         public static DetailFilmViewModel Instance
@@ -112,7 +114,50 @@ namespace TpWPF.Film.ViewModels
         public string MaNote { get => maNote; set => SetProperty(nameof(MaNote), ref maNote, value); }
         public bool FromMaCollection { get => fromMaCollection; set => SetProperty(nameof(FromMaCollection), ref fromMaCollection, value); }
         public bool FromMaCollectionHide { get => fromMaCollectionHide; set => SetProperty(nameof(FromMaCollectionHide), ref fromMaCollectionHide, value); }
-        public RelayCommand RemoveCommand { get => removeCommand; set => removeCommand = value; }
+        public RelayCommand RemoveCommand { get => removeCommand; set => SetProperty(nameof(RemoveCommand), ref removeCommand, value); }
+        public string Statut
+        {
+            get
+            {
+                InteractionMaCollection interactionMaCollection = new InteractionMaCollection();
+                var result = interactionMaCollection.GetOneFilmById(ImdbId);
+                if (result == null) return null;
+                return result.Statut;
+            }
+            set
+            {
+                SetProperty(nameof(Statut), ref statut, value);
+                InteractionMaCollection interactionMaCollection = new InteractionMaCollection();
+                var result = interactionMaCollection.GetMyCollection();
+                var filmChange = result.FirstOrDefault(w => w.ImdbId == ImdbId);
+                if (filmChange != null)
+                {
+                    filmChange.Statut = value.Substring(value.IndexOf(' ') + 1);
+                    List<MaCollectionModel> maCollectionModels = new List<MaCollectionModel>();
+                    foreach (var film in result)
+                    {
+                        MaCollectionModel maCollectionModel = new MaCollectionModel();
+                        maCollectionModel.ImdbId = film.ImdbId;
+
+                        if (film.ImdbId == ImdbId)
+                        {
+                            maCollectionModel.Statut = film.Statut;
+                        }
+                        else
+                        {
+                            var res = interactionMaCollection.GetOneFilmById(film.ImdbId);
+                            maCollectionModel.Statut = res.Statut;
+                        }
+
+                        maCollectionModels.Add(maCollectionModel);
+                    }
+
+                    interactionMaCollection.UpdateMyCollection(maCollectionModels);
+                    MaCollectionViewModel.Instance.UpdateMyCollection();
+                }
+            }
+        }
+        public string MonStatut { get => monStatut; set => SetProperty(nameof(MonStatut), ref monStatut, value); }
 
         #endregion
 
@@ -133,6 +178,7 @@ namespace TpWPF.Film.ViewModels
             if(film != null)
             {
                 MaNote = film.MaNote;
+                MonStatut = film.Statut;
             }
 
             Attribution(result);

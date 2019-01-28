@@ -13,5 +13,7 @@ namespace TpWPF.Film.Model
         public string ImdbId { get; set; }
         [JsonProperty("MaNote")]
         public string MaNote { get; set; }
+        [JsonProperty("Statut")]
+        public string Statut { get; set; }
     }
 }

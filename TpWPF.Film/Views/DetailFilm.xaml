@@ -29,6 +29,11 @@
             <TextBox Text="{Binding DetailFilm.NoteDonner}" Margin="5,5,1,15" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
             <Label Content="/20" VerticalContentAlignment="Center"/>
             <Button Content="Valider" Margin="5,5,1,15" Command="{Binding DetailFilm.NoteCommand}" CommandParameter="{Binding DetailFilm.ImdbId}" VerticalAlignment="Center"/>
+            <Label Content="    Statut :" VerticalContentAlignment="Center"/>
+            <ComboBox VerticalContentAlignment="Center" Margin="10" SelectedItem="{Binding DetailFilm.Statut}">
+                <ComboBoxItem Content="A voir"/>
+                <ComboBoxItem Content="Vu"/>
+            </ComboBox>
         </StackPanel>
         <Label Content="Détail du film" Grid.Column="0" Grid.Row="0" FontSize="25"/>
         <Image Source="{Binding DetailFilm.Poster}" Grid.Column="0" Grid.Row="1"/>
@@ -41,6 +46,8 @@
                 <Label Content="Ma note :" FontWeight="Bold"  />
                 <Label Content="{Binding DetailFilm.MaNote}"  />
                 <Label Content="/20" />
+                <Label Content="     Mon statut : "  FontWeight="Bold"/>
+                <Label Content="{Binding DetailFilm.MonStatut}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Titre :" FontWeight="Bold"/>
