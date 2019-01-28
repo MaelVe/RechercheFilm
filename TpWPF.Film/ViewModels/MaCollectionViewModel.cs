@@ -12,11 +12,38 @@ namespace TpWPF.Film.ViewModels
     public class MaCollectionViewModel : ObservableObject
     {
         private ObservableCollection<FilmCompletModel> mesFilms;
+        private RelayCommand filmDetailCommand;
+        public RelayCommand FilmDetailCommand { get => filmDetailCommand; set => filmDetailCommand = value; }
+
         public ObservableCollection<FilmCompletModel> MesFilms { get => mesFilms; set => SetProperty(nameof(MesFilms), ref mesFilms, value); }
 
-        public MaCollectionViewModel()
+        //public MaCollectionViewModel()
+        //{
+        //}
+
+        private static MaCollectionViewModel instance = null;
+
+        private MaCollectionViewModel()
         {
+            FilmDetailCommand = new RelayCommand(FilmDetailCommandExecute);
             this.UpdateMyCollection();
+        }
+
+        private void FilmDetailCommandExecute(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static MaCollectionViewModel Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new MaCollectionViewModel();
+                }
+                return instance;
+            }
         }
 
         public void UpdateMyCollection()

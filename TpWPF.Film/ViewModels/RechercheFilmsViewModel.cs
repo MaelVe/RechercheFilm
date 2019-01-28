@@ -32,7 +32,7 @@ namespace TpWPF.Film.ViewModels
         private bool cacherDetailVisibility;
 
         #endregion
-
+    
         #region Constructor
 
         public RechercheFilmsViewModel(IDialogCoordinator dialog)

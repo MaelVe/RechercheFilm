@@ -27,19 +27,50 @@ namespace TpWPF.Film.ViewModels
         private string country;
         private string award;
         private RelayCommand addCommand;
-        private MaCollectionViewModel maCollectionViewModel;
+        //private MaCollectionViewModel maCollectionViewModel;
 
         #endregion
 
         public DetailFilmViewModel()
         {
-            this.MaCollectionViewModel = new MaCollectionViewModel();
+            //this.MaCollectionViewModel = new MaCollectionViewModel();
             AddCommand = new RelayCommand(AddCommandExecute);
         }
 
         #region Properties
 
-        public string Poster { get => poster; set => SetProperty(nameof(Poster), ref poster, value); }
+        public string Poster
+        {
+            get
+            {
+                try
+                {
+                    //SetProperty(nameof(Poster), ref poster, value);
+                    if(poster == null)
+                    {
+                        poster = "";
+                    }
+                    return poster;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return "";
+                }
+            }
+            set
+            {
+                try
+                {
+                    SetProperty(nameof(Poster), ref poster, value);
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
+        }
         public string Description { get => description; set => SetProperty(nameof(Description), ref description, value); }
         public string Title { get => title; set => SetProperty(nameof(Title), ref title, value); }
         public string Year { get => year; set => SetProperty(nameof(Year), ref year, value); }
@@ -54,7 +85,7 @@ namespace TpWPF.Film.ViewModels
         public string Country { get => country; set => SetProperty(nameof(Country), ref country, value); }
         public string Awards { get => award; set => SetProperty(nameof(Awards), ref award, value); }
         public RelayCommand AddCommand { get => addCommand; set => addCommand = value; }
-        public MaCollectionViewModel MaCollectionViewModel { get => maCollectionViewModel; set => maCollectionViewModel = value; }
+        //public MaCollectionViewModel MaCollectionViewModel { get => maCollectionViewModel; set => SetProperty(nameof(maCollectionViewModel), ref maCollectionViewModel, value); }
 
         #endregion
 
@@ -69,7 +100,8 @@ namespace TpWPF.Film.ViewModels
 
         private void AddCommandExecute(object obj)
         {
-            MaCollectionViewModel.UpdateMyCollection();
+            
+           MaCollectionViewModel.Instance.UpdateMyCollection();
         }
 
         public void Attribution(FilmCompletModel filmCompletModel)

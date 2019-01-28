@@ -33,7 +33,21 @@ namespace TpWPF.Film.Model
 
         #region Properties
 
-        public string Title { get => title; set => SetProperty(nameof(Title), ref title, value); }
+        public string Title
+        {
+            get => title; set
+            {
+                try
+                {
+                    SetProperty(nameof(Title), ref title, value);
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
+        }
         public string Year { get => year; set => year = value; }
         public string Rated { get => rated; set => rated = value; }
         public string Released { get => released; set => released = value; }
@@ -46,7 +60,7 @@ namespace TpWPF.Film.Model
         public string Language { get => language; set => language = value; }
         public string Country { get => country; set => country = value; }
         public string Awards { get => awards; set => awards = value; }
-        public string Poster { get => poster; set => poster = value; }
+        public string Poster { get => awards; set => awards =value; }
         public string BoxOffice { get => boxOffice; set => boxOffice = value; }
         public string Production { get => production; set => production = value; }
         public string Type { get => type; set => type = value; }

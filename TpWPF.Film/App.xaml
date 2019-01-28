@@ -20,6 +20,7 @@
 
                 <ResourceDictionary>
                     <converter:BooleanToVisibilityConverter x:Key="BoolToVisConverter"></converter:BooleanToVisibilityConverter>
+                    <local:NullImageConverter x:Key="nullImageConverter"></local:NullImageConverter>
                 </ResourceDictionary>
 
             </ResourceDictionary.MergedDictionaries>
