@@ -23,27 +23,23 @@ namespace TpWPF.Film
             }
         }
 
-        public ListFilmModel GetMyCollection()
+        public List<FilmCompletModel> GetMyCollection()
         {
-            MaCollectionModel myCollections;
+            List<MaCollectionModel> result;
             using (StreamReader file = File.OpenText(@"../../Ressources/MaCollection.json"))
             {
-                JsonSerializer serializer = new JsonSerializer();
-                myCollections = (MaCollectionModel)serializer.Deserialize(file, typeof(MaCollectionModel));
+                result = JsonConvert.DeserializeObject<List<MaCollectionModel>>(file.ReadToEnd());
             }
+            List<FilmCompletModel> filmCompletModels = new List<FilmCompletModel>();
 
             RequeteAPI requeteAPI = new RequeteAPI();
-            object a = requeteAPI.ConstructionRequete(myCollections.ImdbId);
-
-            if(a is ListFilmModel)
+            foreach(var col in result)
             {
-                return a as ListFilmModel;
-            }
-            else
-            {
-                return null;
+                filmCompletModels.Add(requeteAPI.ConstructionRequete(col.ImdbId) as FilmCompletModel);
             }
 
+
+            return filmCompletModels;          
         }
     }
 }

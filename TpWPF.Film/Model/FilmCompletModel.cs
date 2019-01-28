@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TpWPF.MVVM;
 
 namespace TpWPF.Film.Model
 {
-    public class FilmCompletModel
+    public class FilmCompletModel : ObservableObject
     {
         #region Fields
 
@@ -32,7 +33,7 @@ namespace TpWPF.Film.Model
 
         #region Properties
 
-        public string Title { get => title; set => title = value; }
+        public string Title { get => title; set => SetProperty(nameof(Title), ref title, value); }
         public string Year { get => year; set => year = value; }
         public string Rated { get => rated; set => rated = value; }
         public string Released { get => released; set => released = value; }

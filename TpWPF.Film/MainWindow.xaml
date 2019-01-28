@@ -13,7 +13,9 @@
             <TabItem Header="Recherche">
                 <views:RechercheFilms/>
             </TabItem>
-            <TabItem Header="Mes films"/>
+            <TabItem Header="Mes films">
+                <views:MaCollection/>
+            </TabItem>
         </TabControl>
     </Grid>
 </Controls:MetroWindow>

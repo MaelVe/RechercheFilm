@@ -24,7 +24,7 @@ namespace TpWPF.Film.Views
         public MaCollection()
         {
             InitializeComponent();
-            this.DataContext = new MaCollectionViewModel();
+            //this.DataContext = new MaCollectionViewModel();
         }
     }
 }

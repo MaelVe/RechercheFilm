@@ -26,11 +26,15 @@ namespace TpWPF.Film.ViewModels
         private string language;
         private string country;
         private string award;
+        private RelayCommand addCommand;
+        private MaCollectionViewModel maCollectionViewModel;
 
         #endregion
 
         public DetailFilmViewModel()
-        {            
+        {
+            this.MaCollectionViewModel = new MaCollectionViewModel();
+            AddCommand = new RelayCommand(AddCommandExecute);
         }
 
         #region Properties
@@ -48,7 +52,9 @@ namespace TpWPF.Film.ViewModels
         public string Actors { get => actors; set => SetProperty(nameof(Actors), ref actors, value); }
         public string Language { get => language; set => SetProperty(nameof(Language), ref language, value); }
         public string Country { get => country; set => SetProperty(nameof(Country), ref country, value); }
-        public string Award { get => award; set => SetProperty(nameof(Award), ref award, value); }
+        public string Awards { get => award; set => SetProperty(nameof(Awards), ref award, value); }
+        public RelayCommand AddCommand { get => addCommand; set => addCommand = value; }
+        public MaCollectionViewModel MaCollectionViewModel { get => maCollectionViewModel; set => maCollectionViewModel = value; }
 
         #endregion
 
@@ -59,6 +65,11 @@ namespace TpWPF.Film.ViewModels
             RequeteAPI requeteAPI = new RequeteAPI();
             var result = requeteAPI.ConstructionRequete(imdbId) as FilmCompletModel;
             Attribution(result);
+        }
+
+        private void AddCommandExecute(object obj)
+        {
+            MaCollectionViewModel.UpdateMyCollection();
         }
 
         public void Attribution(FilmCompletModel filmCompletModel)
@@ -76,7 +87,7 @@ namespace TpWPF.Film.ViewModels
             Actors = filmCompletModel.Actors;
             Language = filmCompletModel.Language;
             Country = filmCompletModel.Country;
-            Award = filmCompletModel.Awards;
+            Awards = filmCompletModel.Awards;
         }
     }
 }

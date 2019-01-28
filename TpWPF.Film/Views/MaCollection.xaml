@@ -6,7 +6,8 @@
              mc:Ignorable="d" 
              xmlns:local="clr-namespace:TpWPF.Film.Views"
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="MaCollectionViewModel">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -24,7 +25,7 @@
             <Label Content="Si vous souhaitez consulter les détails d'un film cliquer sur le film" />
         </StackPanel>
         <ListBox  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
-    ItemsSource="{Binding MesFilms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+    ItemsSource="{Binding MaCollectionViewModel.MesFilms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
             ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -33,12 +34,12 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Controls:Tile Title="{Binding Title}"  Command="{Binding Path=DataContext.FilmDetailCommand, RelativeSource={RelativeSource AncestorType={x:Type local:RechercheFilms}}}" CommandParameter="{Binding imdbId}"
+                    <Controls:Tile Title="{Binding Title}"  Command="{Binding Path=DataContext.FilmDetailCommand, RelativeSource={RelativeSource AncestorType={x:Type local:MaCollection}}}" CommandParameter="{Binding imdbId}"
                 TiltFactor="2" 
                 Width="100" Height="100"                                     
                 HorizontalContentAlignment="Right">
                         <Controls:Tile.Background>
-                            <ImageBrush ImageSource="{Binding Poster}" />
+                            <ImageBrush ImageSource="{Binding  Poster}" />
                         </Controls:Tile.Background>
                     </Controls:Tile>
                 </DataTemplate>
