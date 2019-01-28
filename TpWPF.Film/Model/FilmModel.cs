@@ -15,9 +15,7 @@ namespace TpWPF.Film.Model
         private string imdbID;
         private string type;
         private string poster;
-        private string error;
-
-       
+        private string error;       
 
         #endregion
 

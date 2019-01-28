@@ -102,7 +102,12 @@ namespace TpWPF.Film.ViewModels
 
         #endregion
 
+        #region Methods
 
+        /// <summary>
+        /// Appel avec l'id imdb pour avoir plus d'infos sur le film
+        /// </summary>
+        /// <param name="imdbId"></param>
         public void Appel(string imdbId)
         {
             // On reconstruit la requête avec l'id imdb pour avoir plus d'infos sur le film
@@ -112,6 +117,10 @@ namespace TpWPF.Film.ViewModels
             Attribution(result);
         }
 
+        /// <summary>
+        /// Foncttion d'ajout dans la liste MesFilms lors de l'appui sur le bouton "Ajouter à mes films"
+        /// </summary>
+        /// <param name="obj"></param>
         private void AddCommandExecute(object obj)
         {
             MaCollectionModel maCollectionModel = new MaCollectionModel();
@@ -121,6 +130,10 @@ namespace TpWPF.Film.ViewModels
             MaCollectionViewModel.Instance.UpdateMyCollection();
         }
 
+        /// <summary>
+        /// Fonction qui va afficher tous les détails d'un film
+        /// </summary>
+        /// <param name="filmCompletModel"></param>
         public void Attribution(FilmCompletModel filmCompletModel)
         {
             ImdbId = filmCompletModel.ImdbId;
@@ -139,5 +152,7 @@ namespace TpWPF.Film.ViewModels
             Country = filmCompletModel.Country;
             Awards = filmCompletModel.Awards;
         }
+
+        #endregion
     }
 }
