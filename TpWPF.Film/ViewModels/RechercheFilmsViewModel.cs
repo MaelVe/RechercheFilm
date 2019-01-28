@@ -124,6 +124,8 @@ namespace TpWPF.Film.ViewModels
                 this.CacherDetailVisibility = true;
             }
 
+            this.DetailFilm.FromMaCollection = false;
+            this.DetailFilm.FromMaCollectionHide = true;
             this.DetailFilm.Appel(commandParameter as string);
         }
 

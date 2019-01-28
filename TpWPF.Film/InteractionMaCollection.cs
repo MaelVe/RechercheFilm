@@ -38,6 +38,28 @@ namespace TpWPF.Film
             }
         }
 
+        /// <summary>
+        /// Ajout d'un élément dans le json
+        /// </summary>
+        /// <param name="maCollectionModel"></param>
+        public void UpdateMyCollection(List<MaCollectionModel> maCollectionModel)
+        {           
+            using (StreamWriter file = File.CreateText(@"../../Ressources/MaCollection.json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(file, maCollectionModel);
+            }
+        }
+
+        public MaCollectionModel GetOneFilmById(string id)
+        {
+            List<MaCollectionModel> result;
+            using (StreamReader file = File.OpenText(@"../../Ressources/MaCollection.json"))
+            {
+                result = JsonConvert.DeserializeObject<List<MaCollectionModel>>(file.ReadToEnd());
+            }
+            return result.FirstOrDefault(w => w.ImdbId == id);
+        }
 
         /// <summary>
         /// Récupération de tous les éléments présents dans MesFilms
@@ -60,6 +82,23 @@ namespace TpWPF.Film
 
 
             return filmCompletModels;          
+        }
+
+        public void RemoveFilmById(string id)
+        {
+            List<MaCollectionModel> result;
+            using (StreamReader file = File.OpenText(@"../../Ressources/MaCollection.json"))
+            {
+                result = JsonConvert.DeserializeObject<List<MaCollectionModel>>(file.ReadToEnd());
+            }
+
+            result.Remove(result.First(w => w.ImdbId == id));
+
+            using (StreamWriter file = File.CreateText(@"../../Ressources/MaCollection.json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(file, result);
+            }
         }
     }
 }

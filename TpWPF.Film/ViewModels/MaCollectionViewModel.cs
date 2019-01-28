@@ -73,7 +73,8 @@ namespace TpWPF.Film.ViewModels
                 this.CacherDetailVisibility = true;
             }
 
-
+            DetailFilmViewModel.Instance.FromMaCollection = true;
+            DetailFilmViewModel.Instance.FromMaCollectionHide = false;
             DetailFilmViewModel.Instance.Appel(commandParameter as string);
         }
 

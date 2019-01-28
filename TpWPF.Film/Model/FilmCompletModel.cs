@@ -11,6 +11,7 @@ namespace TpWPF.Film.Model
     {
         #region Fields
 
+        private string maNote;
         private string imdbId;
         private string title;
         private string year;
@@ -66,6 +67,7 @@ namespace TpWPF.Film.Model
         public string Production { get => production; set => production = value; }
         public string Type { get => type; set => type = value; }
         public string ImdbId { get => imdbId; set => imdbId = value; }
+        public string MaNote { get => maNote; set => maNote = value; }
 
         #endregion
     }
