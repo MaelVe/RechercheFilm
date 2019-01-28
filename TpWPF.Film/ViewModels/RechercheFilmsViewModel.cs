@@ -112,6 +112,10 @@ namespace TpWPF.Film.ViewModels
             }
         }
 
+        /// <summary>
+        /// Fonction éxécutée lors de l'appui sur un film
+        /// </summary>
+        /// <param name="commandParameter"></param>
         public void FilmDetailCommandExecute(object commandParameter)
         {
             if (!this.Detail)
@@ -123,11 +127,14 @@ namespace TpWPF.Film.ViewModels
             this.DetailFilm.Appel(commandParameter as string);
         }
 
+        /// <summary>
+        /// Utillisée pour cacher les détails d'un film
+        /// </summary>
+        /// <param name="commandParameter"></param>
         public void CacherDetailCommandExecute(object commandParameter)
         {
             this.Detail = false;
             this.CacherDetailVisibility = false;
-
         }
 
         #endregion

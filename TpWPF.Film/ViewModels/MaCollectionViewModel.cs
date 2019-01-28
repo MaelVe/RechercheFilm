@@ -18,22 +18,30 @@ namespace TpWPF.Film.ViewModels
         private RelayCommand filmDetailCommand;
         private bool detail;
         private static MaCollectionViewModel instance = null;
+        private DetailFilmViewModel detailFilm;
+        private bool cacherDetailVisibility;
+        private RelayCommand cacherDetailCommand;
 
         #endregion
 
         #region Properties
 
         public RelayCommand FilmDetailCommand { get => filmDetailCommand; set => filmDetailCommand = value; }
+        public RelayCommand CacherDetailCommand { get => cacherDetailCommand; set => cacherDetailCommand = value; }
         public ObservableCollection<FilmCompletModel> MesFilms { get => mesFilms; set => SetProperty(nameof(MesFilms), ref mesFilms, value); }
         public bool Detail { get => detail; set => SetProperty(nameof(Detail), ref detail, value); }
+        public DetailFilmViewModel DetailFilm { get => detailFilm; set => SetProperty(nameof(DetailFilm), ref detailFilm, value); }
+        public bool CacherDetailVisibility { get => cacherDetailVisibility; set => SetProperty(nameof(CacherDetailVisibility), ref cacherDetailVisibility, value); }
 
         #endregion
 
-        #region Methods
+        #region Constructor(s)
 
         private MaCollectionViewModel()
         {
+            this.DetailFilm = DetailFilmViewModel.Instance;
             FilmDetailCommand = new RelayCommand(FilmDetailCommandExecute);
+            CacherDetailCommand = new RelayCommand(CacherDetailCommandExecute);
             this.UpdateMyCollection();
         }
 
@@ -49,6 +57,10 @@ namespace TpWPF.Film.ViewModels
             }
         }
 
+        #endregion
+
+        #region Methods
+
         /// <summary>
         /// Fonction appelé lorsque l'on appuie sur un film, permet d'afficher les détails du film
         /// </summary>
@@ -58,9 +70,21 @@ namespace TpWPF.Film.ViewModels
             if (!this.Detail)
             {
                 this.Detail = true;
+                this.CacherDetailVisibility = true;
             }
 
+
             DetailFilmViewModel.Instance.Appel(commandParameter as string);
+        }
+
+        /// <summary>
+        /// Utillisée pour cacher les détails d'un film
+        /// </summary>
+        /// <param name="commandParameter"></param>
+        public void CacherDetailCommandExecute(object commandParameter)
+        {
+            this.Detail = false;
+            this.CacherDetailVisibility = false;
         }
 
         /// <summary>

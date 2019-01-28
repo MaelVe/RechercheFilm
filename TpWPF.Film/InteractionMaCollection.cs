@@ -14,6 +14,10 @@ namespace TpWPF.Film
     /// </summary>
     public class InteractionMaCollection
     {
+        /// <summary>
+        /// Ajout d'un élément dans le json
+        /// </summary>
+        /// <param name="maCollectionModel"></param>
         public void AddToMyCollection(MaCollectionModel maCollectionModel)
         {
             // On est obligé de d'abord déserialiser pour récuperer ce qui existent déjà
@@ -34,6 +38,11 @@ namespace TpWPF.Film
             }
         }
 
+
+        /// <summary>
+        /// Récupération de tous les éléments présents dans MesFilms
+        /// </summary>
+        /// <returns></returns>
         public List<FilmCompletModel> GetMyCollection()
         {
             List<MaCollectionModel> result;

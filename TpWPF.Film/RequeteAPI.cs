@@ -14,6 +14,14 @@ namespace TpWPF.Film
     {
         public const string debutRequete = "http://www.omdbapi.com/?apikey=12434fb2&";
 
+        /// <summary>
+        /// Fonction de création de la requête pour l'api omdb
+        /// </summary>
+        /// <param name="titre"></param>
+        /// <param name="year"></param>
+        /// <param name="id"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public object ConstructionRequete(string titre, string year, string id, string type)
         {
             var requete = debutRequete;
@@ -59,15 +67,24 @@ namespace TpWPF.Film
             return TransformJsonToObject(result, true);
         }
 
+        /// <summary>
+        /// Fonction de création de la requête pour l'api omdb avec juste l'id omdb, permet de récupérer plus d'info sur un film
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public object ConstructionRequete(string id)
         {
             var requete = debutRequete;
             requete += "i=" + id;
             var resultId = Appel(requete);
             return TransformJsonToObject(resultId, false);
-
         }
 
+        /// <summary>
+        /// Fait un appel htpp
+        /// </summary>
+        /// <param name="requete">La requête omdb</param>
+        /// <returns></returns>
         static string Appel(string requete)
         {
             using (HttpClient client = new HttpClient())
@@ -85,6 +102,12 @@ namespace TpWPF.Film
             }
         }
 
+        /// <summary>
+        /// Transformation du json reçu de omdb en objet
+        /// </summary>
+        /// <param name="json"></param>
+        /// <param name="fromClassic"></param>
+        /// <returns></returns>
         public object TransformJsonToObject(string json, bool fromClassic)
         {
             if (json.Contains("Error"))
