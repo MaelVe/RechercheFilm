@@ -75,7 +75,6 @@ namespace TpWPF.Film
                 // la requête
                 using (HttpResponseMessage response = client.GetAsync(requete).Result)
                 {
-
                     using (HttpContent content = response.Content)
                     {
                         // récupère la réponse, il ne resterai plus qu'à désérialiser

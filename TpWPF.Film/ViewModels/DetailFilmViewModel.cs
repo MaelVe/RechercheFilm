@@ -12,6 +12,7 @@ namespace TpWPF.Film.ViewModels
     {
         #region Fields
 
+        private string imdbId;
         private string poster;
         private string description;
         private string title;
@@ -27,14 +28,27 @@ namespace TpWPF.Film.ViewModels
         private string country;
         private string award;
         private RelayCommand addCommand;
-        //private MaCollectionViewModel maCollectionViewModel;
 
         #endregion
 
-        public DetailFilmViewModel()
+        private static DetailFilmViewModel instance = null;
+
+        private DetailFilmViewModel()
         {
-            //this.MaCollectionViewModel = new MaCollectionViewModel();
             AddCommand = new RelayCommand(AddCommandExecute);
+
+        }
+
+        public static DetailFilmViewModel Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new DetailFilmViewModel();
+                }
+                return instance;
+            }
         }
 
         #region Properties
@@ -45,8 +59,7 @@ namespace TpWPF.Film.ViewModels
             {
                 try
                 {
-                    //SetProperty(nameof(Poster), ref poster, value);
-                    if(poster == null)
+                    if (poster == null)
                     {
                         poster = "";
                     }
@@ -85,7 +98,7 @@ namespace TpWPF.Film.ViewModels
         public string Country { get => country; set => SetProperty(nameof(Country), ref country, value); }
         public string Awards { get => award; set => SetProperty(nameof(Awards), ref award, value); }
         public RelayCommand AddCommand { get => addCommand; set => addCommand = value; }
-        //public MaCollectionViewModel MaCollectionViewModel { get => maCollectionViewModel; set => SetProperty(nameof(maCollectionViewModel), ref maCollectionViewModel, value); }
+        public string ImdbId { get => imdbId; set => SetProperty(nameof(ImdbId), ref imdbId, value); }
 
         #endregion
 
@@ -95,17 +108,22 @@ namespace TpWPF.Film.ViewModels
             // On reconstruit la requête avec l'id imdb pour avoir plus d'infos sur le film
             RequeteAPI requeteAPI = new RequeteAPI();
             var result = requeteAPI.ConstructionRequete(imdbId) as FilmCompletModel;
+            result.ImdbId = imdbId;
             Attribution(result);
         }
 
         private void AddCommandExecute(object obj)
         {
-            
-           MaCollectionViewModel.Instance.UpdateMyCollection();
+            MaCollectionModel maCollectionModel = new MaCollectionModel();
+            maCollectionModel.ImdbId = obj as string;
+            InteractionMaCollection interactionMaCollection = new InteractionMaCollection();
+            interactionMaCollection.AddToMyCollection(maCollectionModel);
+            MaCollectionViewModel.Instance.UpdateMyCollection();
         }
 
         public void Attribution(FilmCompletModel filmCompletModel)
         {
+            ImdbId = filmCompletModel.ImdbId;
             Poster = filmCompletModel.Poster;
             Description = filmCompletModel.Plot;
             Title = filmCompletModel.Title;

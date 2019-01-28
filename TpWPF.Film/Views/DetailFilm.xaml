@@ -21,7 +21,7 @@
 
         </Grid.RowDefinitions>
 
-        <Button Grid.Column="1" Grid.Row="0" Content="Ajouter à mes films !" HorizontalAlignment="Right" Command="{Binding DetailFilm.AddCommand}" Margin="5"/>
+        <Button Grid.Column="1" Grid.Row="0" Content="Ajouter à mes films !" HorizontalAlignment="Right" Command="{Binding DetailFilm.AddCommand}" CommandParameter="{Binding DetailFilm.ImdbId}" Margin="5"/>
         <Label Content="Détail du film" Grid.Column="0" Grid.Row="0" FontSize="25"/>
         <Image Source="{Binding DetailFilm.Poster}" Grid.Column="0" Grid.Row="1"/>
         <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">

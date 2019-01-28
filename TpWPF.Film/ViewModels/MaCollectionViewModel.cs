@@ -14,7 +14,7 @@ namespace TpWPF.Film.ViewModels
         private ObservableCollection<FilmCompletModel> mesFilms;
         private RelayCommand filmDetailCommand;
         public RelayCommand FilmDetailCommand { get => filmDetailCommand; set => filmDetailCommand = value; }
-
+        private bool detail;
         public ObservableCollection<FilmCompletModel> MesFilms { get => mesFilms; set => SetProperty(nameof(MesFilms), ref mesFilms, value); }
 
         //public MaCollectionViewModel()
@@ -29,9 +29,16 @@ namespace TpWPF.Film.ViewModels
             this.UpdateMyCollection();
         }
 
-        private void FilmDetailCommandExecute(object obj)
+        public bool Detail { get => detail; set => SetProperty(nameof(Detail), ref detail, value); }
+
+        private void FilmDetailCommandExecute(object commandParameter)
         {
-            throw new NotImplementedException();
+            if (!this.Detail)
+            {
+                this.Detail = true;
+            }
+
+            DetailFilmViewModel.Instance.Appel(commandParameter as string);
         }
 
         public static MaCollectionViewModel Instance

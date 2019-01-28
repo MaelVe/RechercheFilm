@@ -50,7 +50,7 @@ namespace TpWPF.Film.ViewModels
                 "series",
                 "episode"
             };
-            this.DetailFilm = new DetailFilmViewModel();
+            this.DetailFilm = DetailFilmViewModel.Instance;
             this.Detail = false;
         }
 

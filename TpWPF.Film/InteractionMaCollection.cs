@@ -16,10 +16,21 @@ namespace TpWPF.Film
     {
         public void AddToMyCollection(MaCollectionModel maCollectionModel)
         {
+            // On est obligé de d'abord déserialiser pour récuperer ce qui existent déjà
+            List<MaCollectionModel> result = new List<MaCollectionModel>();
+            using (StreamReader file = File.OpenText(@"../../Ressources/MaCollection.json"))
+            {
+                result = JsonConvert.DeserializeObject<List<MaCollectionModel>>(file.ReadToEnd());
+            }
+
+            result.Add(maCollectionModel);
+
             using (StreamWriter file = File.CreateText(@"../../Ressources/MaCollection.json"))
             {
+                
                 JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, maCollectionModel);
+                serializer.Serialize(file, result);
+                
             }
         }
 

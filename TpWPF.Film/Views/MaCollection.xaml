@@ -34,16 +34,18 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Controls:Tile Title="{Binding Title}"  Command="{Binding Path=DataContext.FilmDetailCommand, RelativeSource={RelativeSource AncestorType={x:Type local:MaCollection}}}" CommandParameter=""
+                    <Controls:Tile Title="{Binding Title}"  Command="{Binding Path=DataContext.FilmDetailCommand, RelativeSource={RelativeSource AncestorType={x:Type local:MaCollection}}}" CommandParameter="{Binding ImdbId}"
                 TiltFactor="2" 
                 Width="100" Height="100"                                     
                 HorizontalContentAlignment="Right">
                         <Controls:Tile.Background>
-                            <ImageBrush ImageSource="{Binding  Poster , Converter={StaticResource nullImageConverter}}" />
+                            <ImageBrush ImageSource="{Binding Poster, Converter={StaticResource nullImageConverter}}" />
                         </Controls:Tile.Background>
                     </Controls:Tile>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <local:DetailFilm Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="0 10 0 10" Visibility="{Binding Detail, Converter={StaticResource BoolToVisConverter}}" />
+
     </Grid>
 </UserControl>
